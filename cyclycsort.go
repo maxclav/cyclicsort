@@ -1,5 +1,15 @@
 package cyclicsort
 
+// Sort sorts the slice `nums` if it is valid.
+// It is valid if each items are uniques and in the range of [0, N-1]
+// where `N` is the len(nums).
+func Sort(nums []int) {
+	if len(nums) <= 1 || !IsValid(nums) {
+		return
+	}
+	SortValid(nums)
+}
+
 // SortValid sorts a valid slice `nums`.
 // It is valid if each items are uniques and in the range of [0, N-1]
 // where `N` is the len(nums).
@@ -17,16 +27,6 @@ func SortValid(nums []int) {
 	}
 }
 
-// Sort sorts the slice `nums` if it is valid.
-// It is valid if each items are uniques and in the range of [0, N-1]
-// where `N` is the len(nums).
-func Sort(nums []int) {
-	if len(nums) <= 1 || !IsValid(nums) {
-		return
-	}
-	SortValid(nums)
-}
-
 // IsValid returns whether the slice `nums`
 // is valid for the cyclic sort (true) or not (false).
 //
@@ -35,7 +35,7 @@ func Sort(nums []int) {
 func IsValid(nums []int) bool {
 	m := make(map[int]struct{})
 	for _, num := range nums {
-		if num > len(nums) {
+		if num < 0 || num > len(nums)-1 {
 			return false
 		}
 		if _, ok := m[num]; ok {
