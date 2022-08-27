@@ -40,7 +40,6 @@ fmt.Println(Validate(s4)) // Prints error
 ### Sort a valid slice
 
 ```go
-// Sort a valid slice
 s := []int{4, 1, 3, 0, 5, 2}
 SortValid(s)
 fmt.Println(s) // Prints []int{0, 1, 2, 3, 4, 5}
